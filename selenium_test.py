@@ -12,21 +12,26 @@ s = Service('C:\sel\chromedriver.exe')
 driver = webdriver.Chrome(service=s)
 
 
-driver.get("https://www.petiteknit.com/")
+driver.get("https://www.google.com/")
 print(driver.title)
 
-search = driver.find_element(By.ID, "search-input")
-search.send_keys("test")
+consent_button = driver.find_element(By.ID, "L2AGLb")
+time.sleep(3)
+consent_button.click()
+
+
+search = driver.find_element(By.CSS_SELECTOR, "input.gLFyf")
+search.send_keys("ile nóg ma padalec")
 search.send_keys(Keys.RETURN)
 
-try:
-    main = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.ID, "main"))
-    )
-finally:
-    driver.quit()
+# try:
+#     main = WebDriverWait(driver, 10).until(
+#         EC.presence_of_element_located((By.ID, "main"))
+#     )
+# finally:
+#     driver.quit()
 
-print(main.text)
+# print(main.text)
 
-time.sleep(5)
+time.sleep(20)
 driver.quit()
