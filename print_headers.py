@@ -1,15 +1,15 @@
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
-import time
 from selenium.webdriver.chrome.options import Options
 
 options = Options()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
-PATH=Service('C:\sel\chromedriver.exe')
+PATH=Service('/opt/selenium/chromedriver')
 driver = webdriver.Chrome(service=PATH, options=options)
 
 
@@ -30,14 +30,10 @@ try:
         EC.presence_of_element_located((By.ID, "main"))
     )
 
-    articles = main.find_elements(By.ID, "rso")
+    articles = main.find_elements(By.CSS_SELECTOR, ".g.Ww4FFb.vt6azd.tF2Cxc")
     for art in articles:
-        header = art.find_elements(By.CSS_SELECTOR, ".LC20lb.MBeuO.DKV0Md")
-        print(header[0].text)
+        header = art.find_element(By.CSS_SELECTOR, ".LC20lb.MBeuO.DKV0Md")
+        print(header.text)
 
 finally:
     driver.quit()
-
-
-# time.sleep(5)
-# driver.quit()
