@@ -29,10 +29,11 @@ try:
     main = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "main"))
     )
-    articles = main.find_elements(By.TAG_NAME, "div")
+
+    articles = main.find_elements(By.ID, "rso")
     for art in articles:
-        header = art.find_element(By.CSS_SELECTOR, ".LC20lb.MBeuO.DKV0Md")
-        print(header.text)
+        header = art.find_elements(By.CSS_SELECTOR, ".LC20lb.MBeuO.DKV0Md")
+        print(header[0].text)
 
 finally:
     driver.quit()
