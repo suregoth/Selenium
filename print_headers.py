@@ -1,4 +1,4 @@
-import time
+import time, platform
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,7 +9,10 @@ from selenium.webdriver.chrome.options import Options
 
 options = Options()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
-PATH=Service('/opt/selenium/chromedriver')
+if platform.system() == "Linux":
+    PATH = Service('/opt/selenium/chromedriver')
+elif platform.system() == "Windows":
+    PATH = Service('C:\sel\chromedriver.exe')
 driver = webdriver.Chrome(service=PATH, options=options)
 
 
