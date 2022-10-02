@@ -9,12 +9,12 @@ from selenium.webdriver.chrome.options import Options
 
 options = Options()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
 if platform.system() == "Linux":
     PATH = Service('/opt/selenium/chromedriver')
 elif platform.system() == "Windows":
     PATH = Service('C:\sel\chromedriver.exe')
 driver = webdriver.Chrome(service=PATH, options=options)
-
 
 driver.get("https://www.google.com/")
 print(driver.title)
